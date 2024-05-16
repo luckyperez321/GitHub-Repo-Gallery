@@ -2,7 +2,7 @@ const overview = document.querySelector(".overview"); //this will be where your 
 const username = "luckyperez321"; //console.log(luckyperez321);
 
 const githubInfo = async function () {
-    const url = await fetch(`https://api.github.com/users${username}`);
+    const url = await fetch(`https://api.github.com/users/${username}`);
     console.log(url);
     const data = await url.json();
     console.log(data);
