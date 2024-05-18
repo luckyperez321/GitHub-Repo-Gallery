@@ -14,8 +14,6 @@ const displayInfo = function (data) {
     const userInfoDiv = document.createElement('div');
     userInfoDiv.classList.add('user-info');
     userInfoDiv.innerHTML = `
-
-
 <figure>
     <img alt = "user avatar" src="${data.avatar_url}"/>
 </figure>
@@ -34,7 +32,7 @@ const displayInfo = function (data) {
 const gitRepos = async function () {
   const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
   const repoData = await fetchRepos.json();
-  gitRepos(repoData);
+  repoAbout(repoData);
 };
 
 
@@ -46,6 +44,3 @@ repoItem.innerHTML = `<h3>${repo.name}</h3>`;
 repoList.append(repoItem);
 }
 };
-
-gitRepos();
-repoAbout(repoData);
