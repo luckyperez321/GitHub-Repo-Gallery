@@ -73,6 +73,7 @@ if (e.target.matches("h3")){
 });
 
 const getRepoInfo = async function(repoName){
-
+    await fetch(``);
+    const repoInfo = await .json();
 
 };
