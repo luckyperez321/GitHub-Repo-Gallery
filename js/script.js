@@ -2,6 +2,23 @@ const overview = document.querySelector(".overview"); //this will be where your 
 const username = "luckyperez321"; //console.log(luckyperez321);
 const repoList = document.querySelector(".repo-list"); //select the unordered list to display the repos list
 
+
+
+
+const repoSection = document.querySelector(".repos"); //MAY HAVE TO BE REPO-LIST
+const repoData = document.querySelector(".repo-data");
+
+
+
+
+
+
+
+
+
+
+
+
 const githubInfo = async function () {
     const url = await fetch(`https://api.github.com/users/${username}`);
     const data = await url.json();
@@ -11,11 +28,11 @@ githubInfo();
 
 
 const displayInfo = function (data) {
-    const userInfoDiv = document.createElement('div');
-    userInfoDiv.classList.add('user-info');
+    const userInfoDiv = document.createElement("div");
+    userInfoDiv.classList.add("user-info");
     userInfoDiv.innerHTML = `
 <figure>
-    <img alt = "user avatar" src="${data.avatar_url}"/>
+    <img alt = "user avatar" src=${data.avatar_url}/>
 </figure>
 <div>
 <p><strong>Name:</strong>${data.name}</p>
@@ -30,17 +47,32 @@ const displayInfo = function (data) {
 
 
 const gitRepos = async function () {
-  const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
-  const repoData = await fetchRepos.json();
-  repoAbout(repoData);
+    const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+    const repoData = await fetchRepos.json();
+    repoAbout(repoData);
 };
 
 
-const repoAbout = async function(repos){
-for (const repo of repos){
-const repoItem = document.createElement ("li");
-repoItem.classList.add("repo");
-repoItem.innerHTML = `<h3>${repo.name}</h3>`;
-repoList.append(repoItem);
+const repoAbout = function (repos) {
+    for (const repo of repos) {
+        const repoItem = document.createElement("li");
+        repoItem.classList.add("repo");
+        repoItem.innerHTML = `<h3>${repo.name}</h3>`;
+        repoList.append(repoItem);
+    }
+};
+
+
+
+
+repoList.addEventListener("click",function(e){
+if (e.target.matches("h3")){
+    const repoName = e.target.innerText;
+
 }
+});
+
+const getRepoInfo = async function(repoName){
+
+
 };
