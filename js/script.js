@@ -1,22 +1,8 @@
 const overview = document.querySelector(".overview"); //this will be where your profile info will appear
 const username = "luckyperez321"; //console.log(luckyperez321);
 const repoList = document.querySelector(".repo-list"); //select the unordered list to display the repos list
-
-
-
-
 const repoSection = document.querySelector(".repos"); //MAY HAVE TO BE REPO-LIST
 const repoData = document.querySelector(".repo-data");
-
-
-
-
-
-
-
-
-
-
 
 
 const githubInfo = async function () {
@@ -63,17 +49,25 @@ const repoAbout = function (repos) {
 };
 
 
-
-
-repoList.addEventListener("click",function(e){
-if (e.target.matches("h3")){
-    const repoName = e.target.innerText;
-getRepoInfo(repoName);
-}
+repoList.addEventListener("click", function (e) {
+    if (e.target.matches("h3")) {
+        const repoName = e.target.innerText;
+        getRepoInfo(repoName);
+    }
 });
 
-const getRepoInfo = async function(repoName){
+const getRepoInfo = async function (repoName) {
     const fetchInfo = await fetch(`https://api.github.com/repos/${username}/${repoName}`);
     const repoInfo = await fetchInfo.json();
-    console.log (repoInfo);
+    console.log(repoInfo);
+    const fetchLanguages = await fetch(repoInfo.languages_url);
+    const languageData = await fetchLanguages.json();
+    console.log(languageData);
+
+
+    const languages = [];
+    for (const language in languageData) {
+        languages.push(language);
+    }
+    
 };
