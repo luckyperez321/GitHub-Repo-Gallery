@@ -3,6 +3,8 @@ const username = "luckyperez321"; //console.log(luckyperez321);
 const repoList = document.querySelector(".repo-list"); //select the unordered list to display the repos list
 const repoSection = document.querySelector(".repos"); //MAY HAVE TO BE REPO-LIST
 const repoData = document.querySelector(".repo-data");
+const reposButton = document.querySelector (".view-repos");
+const filterInput = document.querySelector (".filter-repos");
 
 
 const githubInfo = async function () {
@@ -88,3 +90,7 @@ repoData.append(div);
 };
 
 
+reposButton.addEventListener("click", function (e){
+allReposContainer.classList.remove("hide");
+repoData.classList.add("hide");
+});
