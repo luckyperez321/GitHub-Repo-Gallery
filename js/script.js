@@ -1,10 +1,10 @@
 const overview = document.querySelector(".overview"); //this will be where your profile info will appear
 const username = "luckyperez321"; //console.log(luckyperez321);
 const repoList = document.querySelector(".repo-list"); //select the unordered list to display the repos list
-const repoSection = document.querySelector(".repos"); //MAY HAVE TO BE REPO-LIST
+const repoSection = document.querySelector(".repos");
 const repoData = document.querySelector(".repo-data");
-const reposButton = document.querySelector (".view-repos");
-const filterInput = document.querySelector (".filter-repos");
+const reposButton = document.querySelector(".view-repos");
+const filterInput = document.querySelector(".filter-repos");
 
 
 const githubInfo = async function () {
@@ -78,12 +78,12 @@ const getRepoInfo = async function (repoName) {
 };
 
 
-const specificRepo = function (repoInfo , languages){
-repoData.innerHTML= "";
-repoData.classList.remove("hide");
-allReposContainer.classList.add("hide");
-const div = document.createElement("div");
-div.innerHTML = `
+const specificRepo = function (repoInfo, languages) {
+    repoData.innerHTML = "";
+    repoData.classList.remove("hide");
+    allReposContainer.classList.add("hide");
+    const div = document.createElement("div");
+    div.innerHTML = `
 
 
 <h3>Name: ${repoInfo.name}</h3>
@@ -92,14 +92,28 @@ div.innerHTML = `
     <p>Languages: ${languages.join(", ")}</p>
     <a class="visit" href="${repoInfo.html_url}" target="_blank" rel="noreferrer noopener">View Repo on GitHub!</a>
     `;
-repoData.append(div);
+    repoData.append(div);
 };
 
 
-reposButton.addEventListener("click", function (e){
-allReposContainer.classList.remove("hide");
-repoData.classList.add("hide");
-reposButton.classList.add("hide");
+reposButton.addEventListener("click", function () {
+    allReposContainer.classList.remove("hide");
+    repoData.classList.add("hide");
+    reposButton.classList.add("hide");
 });
 
 
+filterInput.addEventListener("input", function (e) {
+    const searchText = e.target.value;
+    const repos = document.querySelectorAll(".repo");
+    const searchLowerText = searchText.toLowerCase();
+    for (const repo of repos) {
+        const repoLowerText = repo.innerText.toLowerCase();
+        if (repoLowerText.includes(searchLowerText)) {
+            repo.classList.remove("hide");
+        }
+        else {
+            repo.classList.add("hide");
+        }
+    }
+});
