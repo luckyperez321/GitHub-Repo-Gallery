@@ -15,6 +15,12 @@ const githubInfo = async function () {
 githubInfo();
 
 
+filterInput.classList.add("show");
+
+
+
+
+
 const displayInfo = function (data) {
     const userInfoDiv = document.createElement("div");
     userInfoDiv.classList.add("user-info");
@@ -93,4 +99,7 @@ repoData.append(div);
 reposButton.addEventListener("click", function (e){
 allReposContainer.classList.remove("hide");
 repoData.classList.add("hide");
+reposButton.classList.add("hide");
 });
+
+
